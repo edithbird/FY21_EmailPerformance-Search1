@@ -1,0 +1,12 @@
+EmailName,Start,InitialSendDate,SendCount,PercentOfSend,Opens,OpenRate,MEOR,TotalOpens,Clicks,ClickRate,MECTR,MECTOR,TotalClicks,Bounces,BounceRate,Unsubs,UnsubRate,Shares,Delivered,DeliveryRate,Conversions,Subject
+Email 01                                                                         ,2021,11/05/2020,"19,158",33.95%,"3,240",17.47%,17.47%,4671,303,1.63%,1.63%,9.35%,1201,609,3.18%,184,0.99%,14,"18,549",96.82%,0,Add us to your college list — here's why
+Email 02                                                                         ,2021,11/19/2020,"18,699",33.14%,"3,092",16.92%,16.92%,4348,246,1.35%,1.35%,7.96%,702,429,2.29%,110,0.60%,7,"18,270",97.71%,0,Affordability benefits you now and in the future
+Email 03                                                                         ,2021,12/03/2020,"18,565",32.90%,"2,876",15.86%,15.86%,4043,227,1.25%,1.25%,7.89%,462,434,2.34%,92,0.51%,2,"18,131",97.66%,0,One of the best educations in the Northeast
+Email 04,2021,12/17/2020,"18,056",24.24%,"3,412",18.94%,18.94%,4895,233,1.29%,1.29%,6.83%,409,44,0.24%,96,0.53%,2,"18,012",99.76%,0,It’s good to be green
+Email 01                                                                         ,2020,12/06/2019,"5,516",,679,,12.48%,,126,,2.32%,18.56%,,77,,,,,"5,439",,,Join our inclusive community
+Email 02                                                                         ,2020,12/19/2019,"5,466",,839,,15.58%,,94,,1.75%,11.20%,,81,,,,,"5,385",,,Take a virtual tour or visit in person
+Email 03                                                                         ,2020,01/09/2020,"5,362",,840,,15.91%,,117,,2.22%,13.93%,,82,,,,,"5,280",,,Where academic excellence meets affordability
+Email 04,2020,01/23/2020,"5,247",,785,,15.02%,,114,,2.18%,14.52%,,20,,,,,"5,227",,,Where quality meets affordability
+Email 05,2020,02/06/2020,"5,212",,775,,14.93%,,45,,0.87%,5.81%,,,,,,,"5,192",,,It's good to be green
+Email 06,2020,03/04/2020,"5,251",,789,,15.20%,,59,,1.14%,7.48%,,,,,,,5151,,,We help you see the world
+Email 07,2020,03/11/2020,"5,213",,771,,15.08%,,51,,0.99%,6.61%,,,,,,,"5,112",,,

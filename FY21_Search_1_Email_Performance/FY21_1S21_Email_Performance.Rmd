@@ -1,0 +1,183 @@
+---
+title: "FY21 Senior Search 1 Email Performance"
+author: "Office of Marketing and Brand Management"
+date: "`r Sys.Date()`"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE
+)
+```
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(knitr)
+library(dplyr)
+library(stringr)
+library(kableExtra)
+library(ggplot2)
+library(scales)
+library(readxl)
+```
+
+
+```{r}
+#windows
+Overall <- read.csv("C:/Users/christine.iyer/Box/FY21_Email/FY21_Journey_Reports/FY21_SR_Search.csv", header = T, stringsAsFactors = F)
+
+
+#Mac
+# Overall_1 <- read.csv("/Users/christineiyer/Box/FY21_Email/FY21_Journey_Reports/FY21_SR_Search.csv", header = T, stringsAsFactors = F)
+```
+
+
+
+```{r}
+Overall_1 <- Overall %>% 
+  mutate(InitialSendDate = as.Date(InitialSendDate, format = "%m/%d/%Y"),  
+         SendCount = as.numeric(gsub(",", "", SendCount)), 
+         OpenRate = as.numeric(gsub("%", "", OpenRate)), 
+         ClickRate = as.numeric(gsub("%", "", ClickRate)), 
+         Opens = as.numeric(gsub(",", "", Opens)), 
+         CTOR = round(Clicks/Opens*100 ,2))%>% 
+  select(
+           InitialSendDate,
+           Email = EmailName, OpenRate, ClickRate,Subject, InitialSendDate, SendCount, Opens, CTOR)%>% filter(InitialSendDate >= "2020-10-15") 
+
+```
+
+
+### Basic Description
+
+The FY21 Senior Search 1 in November and December 2020, marks the Office of Marketing and Brand Management's foray into Marketing Cloud's Journey Building. 
+
+The performance results for FY21 Search 1 are illustrated in this report. 
+
+Search 1 consisted of 4 emails sent between November 1 and December 15, 2020, each roughly 2 weeks apart. In this report, I show the Senior Journey performance, using 3 metrics, Open Rate (OR), Click Through Rate (CTR), and Click to Open Rate (CTOR). 
+
+### Findings
+
+Benchmarks, which are based on those provided by the Email team, are marked on each plot with a dotted line. \href{https://docs.google.com/spreadsheets/d/1CWM89gk3-qvTg1Go86KvIxmbSiMbQrdLLC6ZA5AOFWo/edit#gid=876054141}{{\color{blue}{\underline{Those benchmarks can be found here}}}}.
+
+
+
+__Open Rate__
+
+```{r fig.height=3, fig.width=8}
+
+ 
+
+ggplot(Overall_1, aes(x = InitialSendDate, y = OpenRate))+ 
+  geom_line(color = "#0e1033")+ 
+  geom_point(color = "#f5a800", size = 2.4)+
+  #facet_wrap(~Campaign)+
+  theme_bw()+
+  scale_x_date(date_breaks = "2 week")+
+  ggtitle("Open Rate")+ 
+   theme(text = element_text(size=6),
+      axis.text.x = element_text(angle=60, hjust=1))+ 
+  ylim(c(12, 23))+ 
+  annotate("text", x = as.Date("2020-11-10"), y = 15.8,  size = 2.5, label = "Add us to your college \nlist — here's why")+
+  annotate("text", x = as.Date("2020-11-20"), y = 17.75,  size = 2.5, label = "Affordability benefits you \nnow and in the future")+
+  annotate("text", x = as.Date("2020-12-03"), y = 18.75,  size = 2.5, label = "One of the best \neducations in the Northeast")+
+  annotate("text", x = as.Date("2020-12-15"), y = 18.5,  size = 2.5, label = "It’s good to be green")+
+
+  ylim(c(12, 24))+ 
+  geom_hline(yintercept = 22, linetype="dashed") +
+  theme(strip.background =element_rect(fill="#f5a800"))+
+  theme(strip.text = element_text(colour = '#0e1033', size = 7))
+
+```
+
+\newpage
+ 
+ 
+__Click through Rate__
+
+```{r fig.height=3, fig.width=8}
+
+ggplot(Overall_1, aes(x = InitialSendDate, y = ClickRate))+ 
+  geom_line(color = "#0e1033")+ 
+  geom_point(color = "#f5a800", size = 2.4)+
+  #facet_wrap(~Campaign)+
+  theme_bw()+
+  scale_x_date(date_breaks = "2 week")+
+  ggtitle("Open Rate")+ 
+   theme(text = element_text(size=6),
+      axis.text.x = element_text(angle=60, hjust=1))+ 
+  ylim(c(0, 4))+ 
+  annotate("text", x = as.Date("2020-11-10"), y = 2,  size = 2.5, label = "Add us to your college \nlist — here's why")+
+  annotate("text", x = as.Date("2020-11-20"), y = 2.3,  size = 2.5, label = "Affordability benefits you \nnow and in the future")+
+  annotate("text", x = as.Date("2020-12-03"), y = 2.23,  size = 2.5, label = "One of the best educations \nin the Northeast")+
+  annotate("text", x = as.Date("2020-12-15"), y = 2,  size = 2.5, label = "It’s good to be green")+
+
+  geom_hline(yintercept = 2, linetype="dashed") +
+  theme(strip.background =element_rect(fill="#f5a800"))+
+  theme(strip.text = element_text(colour = '#0e1033', size = 7))
+```
+
+
+__Click to Open Rate__
+
+```{r fig.height=3, fig.width=8}
+ggplot(Overall_1, aes(x = InitialSendDate, y = CTOR))+ 
+  geom_line(color = "#0e1033")+ 
+  geom_point(color = "#f5a800", size = 2.4)+
+  #facet_wrap(~Campaign)+
+  theme_bw()+
+  scale_x_date(date_breaks = "2 week")+
+  ggtitle("Open Rate")+ 
+   theme(text = element_text(size=6),
+      axis.text.x = element_text(angle=60, hjust=1))+ 
+  ylim(c(12, 21))+ 
+  annotate("text", x = as.Date("2020-11-10"), y = 15.8,  size = 2.5, label = "Add us to your \ncollege list — here's why")+
+  annotate("text", x = as.Date("2020-11-20"), y = 17.75,  size = 2.5, label = "Affordability benefits you \nnow and in the future")+
+  annotate("text", x = as.Date("2020-12-03"), y = 18.75,  size = 2.5, label = "One of the best educations \nin the Northeast")+
+  annotate("text", x = as.Date("2020-12-15"), y = 18.5,  size = 2.5, label = "It’s good to be green")+
+geom_hline(yintercept = 12.7, linetype="dashed")+
+  ylim(c(0, 22))+ 
+  theme(strip.background =element_rect(fill="#f5a800"))+
+  theme(strip.text = element_text(colour = '#0e1033', size = 7))
+
+
+  
+```
+\newpage
+
+
+
+```{r}
+include <- c("Email 01", "Email 02", "Email 03", "Email 04")
+Overall <- head(Overall, 8)
+kable(Overall %>%  
+        select(Email = EmailName, Start = InitialSendDate, Subject, Open_Rate = MEOR, CTR = MECTR, CTOR = MECTOR) %>%
+        arrange(Email), caption = "Comparison to FY20's findings. Search 1S20 was sent using Marketing Cloud's Email Studio, however the performance evaluation is based on the same metrics and the benchmarks are the same. The table below shows how each of the first four Campaign broadcasts for 1S20 performed against 121.  ") %>%
+  kable_paper("striped", full_width = F) %>%
+  pack_rows("Email 1", 1, 2) %>%
+  pack_rows("Email 2", 3, 4)%>%
+  pack_rows("Email 3", 5, 6) %>%
+  pack_rows("Email 4", 7, 8)
+```
+
+### Conclusions
+
+* __Open Rate:__ The most recent Senior Search campaign shows stronger OR when comparing it to that of FY20. The 4 broadcasts in 1S21 have an average OR that is 17.3% higher than the average OR of the first 4 emails of 1S20. When comparing the average OR of the campaign as a whole, 1S21 performed 16.2% better that 1S20. Though technically below benchmark, these findings are very exciting as the email team put a great deal of thought into the selection of subject lines. 
+
+* __Click through Rate:__ There has been a drop in Senior Search CTR from FY20 to FY21. FY21 1S21 ran a campaign of 4 emails. The average CTR was 1.38%. FY20 1S20 ran a campaign of 7 emails and the average CTR was 1.64%. However if we compare "apples to apples", or the first 4 emails of 1S20, the average CTR was 2.11%. So depending on how we want to compare FY21 to FY20, the CTR was 15.6% (4 emails) or 35% (7 emails) better in FY20. 
+
+* __Click to Open Rate:__ There has been a drop in Senior Search CTOR from FY20 to FY21. FY21 1S21 ran a campaign of 4 emails. The average CTOR was 8.01%. FY20 1S20 ran a campaign of 7 emails and the average CTOR was 11.16%. However if we compare "apples to apples", or the first 4 emails of 1S20, the average CTOR was 14.55%. So depending on how we want to compare FY21 to FY20, the CTOR was 45% (4 emails) or 28% (7 emails)better in FY20. 
+
+* According to information provided by Campaign Monitor (CM) on their website, dynamic content has been shown to improve click metrics. \href{https://www.campaignmonitor.com/blog/email-marketing/2019/01/ctor-email-marketing-metrics-you-may-not-know/}{{\color{blue}{\underline{The CM details can be found here}}}}
+As the Department becomes more skilled and fluent with Marketing Cloud and is able to increase dynamic content into the broadcasts, we will hopefully see improvements in the CTR and CTOR in upcoming campaigns. 
+
+
+
+\href{https://www.wrike.com/open.htm?id=618664184}{{\color{blue}{\underline{Wrike Project Details}}}}
+
+\href{https://github.com/edithbird/FY20_EmailPerformance-Search1}{{\color{blue}{\underline{Github Repository}}}}
